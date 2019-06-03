@@ -1,0 +1,14 @@
+kind: Environment
+apiVersion: hyscale.io/v1
+metadata:
+  name: dev
+  applicationName: sidecar-test
+  labels:
+    type: dev
+spec:
+  registry: gcr
+  k8sCluster: GKENew
+  k8sNamespace: stage
+  hosts:  #acting like lb props
+    APP_DOMAIN: api.sampleapp.com
+    WEB_DOMAIN: web.sampleapp.com

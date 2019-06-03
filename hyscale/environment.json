@@ -1,0 +1,20 @@
+{
+	"kind": "Environment",
+	"apiVersion": "hyscale.io/v1",
+	"metadata": {
+		"name": "dev-hrms",
+		"applicationName": "test",
+		"labels": {
+			"type": "dev"
+		}
+	},
+	"spec": {
+		"registry": "ecr",
+		"k8sCluster": "EKS",
+		"k8sNamespace": "hrms-port2",
+		"hosts": {
+			"APP_DOMAIN": "api.sampleapp.com",
+			"WEB_DOMAIN": "web.sampleapp.com"
+		}
+	}
+}
