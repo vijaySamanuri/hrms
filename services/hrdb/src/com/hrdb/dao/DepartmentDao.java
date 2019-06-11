@@ -7,6 +7,7 @@ package com.hrdb.dao;
 
 
 
+import com.wavemaker.runtime.data.dao.query.types.wmql.WMQLTypeHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
 import com.hrdb.Department;
+
+import java.util.List;
 
 /**
  * Specifies methods used to obtain and modify Department related information
@@ -31,5 +34,15 @@ public class DepartmentDao extends WMGenericDaoImpl<Department, Integer> {
     @Override
     public HibernateTemplate getTemplate() {
         return this.template;
+    }
+
+    @Override
+    public WMQLTypeHelper getWMQLTypeHelper() {
+        return null;
+    }
+
+    @Override
+    public List<Department> findByMultipleIds(List<Integer> ids) {
+        return null;
     }
 }
