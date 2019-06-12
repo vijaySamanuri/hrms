@@ -7,7 +7,7 @@ metadata:
     type: prod
 spec:
   registry: gcr
-  k8sCluster: GKENew
+  k8sCluster: GKEQA
   k8sNamespace: hrms-prod
   hosts:  #acting like lb props
     APP_DOMAIN: api.sampleapp.com
