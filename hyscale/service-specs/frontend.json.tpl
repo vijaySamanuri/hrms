@@ -17,13 +17,6 @@
     "dependencies": [
       "hrms-db"
     ],
-    "healthChecks": [
-      {
-        "port": 8080,
-        "healthCheckType": "HTTP",
-        "httpPath": "/hrms"
-      }
-    ],
     "deployProps": [
       {
         "key": "BUILD_NUM",
@@ -36,20 +29,21 @@
       "tomcat-port"
     ],
     "stack": {
-      "name": "tomcat-cli",
+      "name": "hrms-tomcat2",
       "version": "8.5",
       "packages": [
         "java:1.8",
         "apache-tomcat:8.5.15"
       ],
-      "os": "Ubuntu 14.04"
+      "os": "Ubuntu:14.04",
+      "distribution" : "DEBIAN"
     },
     "artifacts": [
       {
         "name": "HRScaffold_war",
         "destination": "/usr/local/content/tomcat/current/webapps/hrms.war",
         "source": {
-          "store": "JFrog",
+          "store": "Jfrog",
           "repository": "HRScaffold",
           "path": "${BUILD_NUM}/HRScaffold.war"
         }
@@ -61,11 +55,10 @@
         "path": "/usr/local/content/tomcat/current/logs",
         "readOnly": false,
         "sizeInGB": "{{ hfs_LOG_SIZE_IN_GB | default('1') }}",
-        "storageClass": "{{ hfs_STORAGE_CLASS | default('default') }}"
+        "storageClass": "{{ hfs_STORAGE_CLASS | default('standard') }}"
       }
     ],
     "config": {
-      "commands": "",
       "props": [
         {
           "key": "JAVA_HOME",
@@ -90,6 +83,11 @@
         {
           "key": "MAX_NO_OF_CONNECTIONS",
           "value": "{{ hfs_MAX_NO_OF_CONNECTIONS | default('10') }}"
+        },
+	{
+          "key": "MYSQL_HOST",
+	  "type": "ENDPOINT",
+          "value": "{{ hfs_MYSQL_HOST | default('HYD') }}"
         }
       ]
     }

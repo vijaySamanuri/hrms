@@ -1,14 +1,14 @@
 kind: Environment
 apiVersion: hyscale.io/v1
 metadata:
-  name: dev
-  applicationName: sidecar-test
+  name: stage
+  applicationName: hrms
   labels:
-    type: dev
+    type: stage
 spec:
   registry: gcr
   k8sCluster: GKENew
-  k8sNamespace: stage
+  k8sNamespace: hrms-stage
   hosts:  #acting like lb props
     APP_DOMAIN: api.sampleapp.com
     WEB_DOMAIN: web.sampleapp.com

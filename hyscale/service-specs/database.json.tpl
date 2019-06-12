@@ -8,29 +8,24 @@
     "replicas": "{{ hfsdb_REPLICAS | default('1') }}",
     "resourceLimits": {
       "memory": "{{ hfsdb_MEMORY_LIMIT_IN_MB | default('512') }}"
-    },
-    "healthChecks": [
-      {
-        "port": 3306,
-        "healthCheckType": "TCP"
-      }
-    ]
+    }
   },
   "spec": {
    "stack": {
-      "name": "mysql-cli",
+      "name": "mysql-cli-0000",
       "version": "5.6",
       "packages": [
         "mysql:5.6"
       ],
-      "os": "Ubuntu 14.04"
+      "os": "Ubuntu:14.04",
+      "distribution" : "DEBIAN"
     },
     "artifacts": [
       {
         "name": "database-dump",
         "destination": "/tmp/hrdb_dump.sql",
         "source": {
-          "store": "Jenkins",
+          "store": "jenkins",
           "basedir": "/var/lib/hyscale/db_scripts",
           "path": "hrdb_dump.sql"
         }
@@ -42,7 +37,7 @@
         "path": "/var/lib/mysql",
         "readOnly": false,
         "sizeInGB": "{{ hfsdb_MYSQL_DATA_DIR_IN_GB | default('2')}}",
-        "storageClass": "{{ hfsdb_STORAGE_CLASS | default('2') }}"
+        "storageClass": "{{ hfsdb_STORAGE_CLASS | default('standard') }}"
       }
     ],
     "config": {

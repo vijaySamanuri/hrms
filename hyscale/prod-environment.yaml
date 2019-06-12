@@ -1,0 +1,14 @@
+kind: Environment
+apiVersion: hyscale.io/v1
+metadata:
+  name: prod
+  applicationName: hrms
+  labels:
+    type: prod
+spec:
+  registry: gcr
+  k8sCluster: GKENew
+  k8sNamespace: hrms-prod
+  hosts:  #acting like lb props
+    APP_DOMAIN: api.sampleapp.com
+    WEB_DOMAIN: web.sampleapp.com
